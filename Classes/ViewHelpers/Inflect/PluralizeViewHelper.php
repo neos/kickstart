@@ -1,5 +1,5 @@
 <?php
-namespace TYPO3\Kickstart\ViewHelpers\Inflect;
+namespace Neos\Kickstart\ViewHelpers\Inflect;
 
 /*
  * This file is part of the TYPO3.Kickstart package.
@@ -11,7 +11,7 @@ namespace TYPO3\Kickstart\ViewHelpers\Inflect;
  * source code.
  */
 
-use TYPO3\Flow\Annotations as Flow;
+use Neos\Flow\Annotations as Flow;
 
 /**
  * Pluralize a word
@@ -29,7 +29,7 @@ use TYPO3\Flow\Annotations as Flow;
 class PluralizeViewHelper extends \Neos\FluidAdaptor\Core\ViewHelper\AbstractViewHelper
 {
     /**
-     * @var \TYPO3\Kickstart\Utility\Inflector
+     * @var \Neos\Kickstart\Utility\Inflector
      * @Flow\Inject
      */
     protected $inflector;

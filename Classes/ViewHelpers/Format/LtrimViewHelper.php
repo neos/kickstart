@@ -1,5 +1,5 @@
 <?php
-namespace TYPO3\Kickstart\ViewHelpers\Format;
+namespace Neos\Kickstart\ViewHelpers\Format;
 
 /*
  * This file is part of the TYPO3.Kickstart package.

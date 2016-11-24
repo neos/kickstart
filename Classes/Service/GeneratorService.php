@@ -1,5 +1,5 @@
 <?php
-namespace TYPO3\Kickstart\Service;
+namespace Neos\Kickstart\Service;
 
 /*
  * This file is part of the TYPO3.Kickstart package.
@@ -11,11 +11,11 @@ namespace TYPO3\Kickstart\Service;
  * source code.
  */
 
-use TYPO3\Flow\Annotations as Flow;
+use Neos\Flow\Annotations as Flow;
 use Neos\FluidAdaptor\View\StandaloneView;
-use TYPO3\Flow\Core\ClassLoader;
-use TYPO3\Flow\Package\PackageInterface;
-use TYPO3\Flow\Utility\Files;
+use Neos\Flow\Core\ClassLoader;
+use Neos\Flow\Package\PackageInterface;
+use Neos\Utility\Files;
 
 /**
  * Service for the Kickstart generator
@@ -24,25 +24,25 @@ use TYPO3\Flow\Utility\Files;
 class GeneratorService
 {
     /**
-     * @var \TYPO3\Flow\ObjectManagement\ObjectManagerInterface
+     * @var \Neos\Flow\ObjectManagement\ObjectManagerInterface
      * @Flow\Inject
      */
     protected $objectManager;
 
     /**
-     * @var \TYPO3\Flow\Package\PackageManagerInterface
+     * @var \Neos\Flow\Package\PackageManagerInterface
      * @Flow\Inject
      */
     protected $packageManager;
 
     /**
-     * @var \TYPO3\Kickstart\Utility\Inflector
+     * @var \Neos\Kickstart\Utility\Inflector
      * @Flow\Inject
      */
     protected $inflector;
 
     /**
-     * @var \TYPO3\Flow\Reflection\ReflectionService
+     * @var \Neos\Flow\Reflection\ReflectionService
      * @Flow\Inject
      */
     protected $reflectionService;
@@ -422,7 +422,7 @@ class GeneratorService
     protected function generateFile($targetPathAndFilename, $fileContent, $force = false)
     {
         if (!is_dir(dirname($targetPathAndFilename))) {
-            \TYPO3\Flow\Utility\Files::createDirectoryRecursively(dirname($targetPathAndFilename));
+            \Neos\Utility\Files::createDirectoryRecursively(dirname($targetPathAndFilename));
         }
 
         if (substr($targetPathAndFilename, 0, 11) === 'resource://') {
