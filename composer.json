@@ -1,5 +1,5 @@
 {
-    "name": "neos/kickstart",
+    "name": "neos/kickstarter",
     "type": "neos-framework",
     "description": "A simple generator for controller and views.",
     "license": "MIT",
@@ -9,12 +9,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Neos\\Kickstart\\": "Classes"
+            "Neos\\Kickstarter\\": "Classes"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Neos\\Kickstart\\Tests\\": "Tests"
+            "Neos\\Kickstarter\\Tests\\": "Tests"
         }
     },
     "replace": {
@@ -22,7 +22,7 @@
     },
     "extra": {
         "neos": {
-            "package-key": "Neos.Kickstart"
+            "package-key": "Neos.Kickstarter"
         }
     }
 }

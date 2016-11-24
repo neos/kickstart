@@ -27,7 +27,7 @@ class Version20161124230102 extends AbstractMigration
      */
     public function up()
     {
-        $this->searchAndReplace('TYPO3\Kickstart', 'Neos\Kickstart');
+        $this->searchAndReplace('TYPO3\Kickstart', 'Neos\Kickstarter');
         $this->searchAndReplace('TYPO3.Kickstart', 'Neos.Kickstart');
     }
 }

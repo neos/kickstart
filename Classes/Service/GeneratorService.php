@@ -1,8 +1,8 @@
 <?php
-namespace Neos\Kickstart\Service;
+namespace Neos\Kickstarter\Service;
 
 /*
- * This file is part of the TYPO3.Kickstart package.
+ * This file is part of the Neos.Kickstarter package.
  *
  * (c) Contributors of the Neos Project - www.neos.io
  *
@@ -36,7 +36,7 @@ class GeneratorService
     protected $packageManager;
 
     /**
-     * @var \Neos\Kickstart\Utility\Inflector
+     * @var \Neos\Kickstarter\Utility\Inflector
      * @Flow\Inject
      */
     protected $inflector;
@@ -67,7 +67,7 @@ class GeneratorService
         $controllerName = ucfirst($controllerName);
         $controllerClassName = $controllerName . 'Controller';
 
-        $templatePathAndFilename = 'resource://TYPO3.Kickstart/Private/Generator/Controller/ActionControllerTemplate.php.tmpl';
+        $templatePathAndFilename = 'resource://Neos.Kickstarter/Private/Generator/Controller/ActionControllerTemplate.php.tmpl';
 
         $contextVariables = array();
         $contextVariables['packageKey'] = $packageKey;
@@ -104,7 +104,7 @@ class GeneratorService
         $controllerName = ucfirst($controllerName);
         $controllerClassName = $controllerName . 'Controller';
 
-        $templatePathAndFilename = 'resource://TYPO3.Kickstart/Private/Generator/Controller/CrudControllerTemplate.php.tmpl';
+        $templatePathAndFilename = 'resource://Neos.Kickstarter/Private/Generator/Controller/CrudControllerTemplate.php.tmpl';
 
         $contextVariables = array();
         $contextVariables['packageKey'] = $packageKey;
@@ -144,7 +144,7 @@ class GeneratorService
         $controllerName = ucfirst($controllerName) . 'Command';
         $controllerClassName = $controllerName . 'Controller';
 
-        $templatePathAndFilename = 'resource://TYPO3.Kickstart/Private/Generator/Controller/CommandControllerTemplate.php.tmpl';
+        $templatePathAndFilename = 'resource://Neos.Kickstarter/Private/Generator/Controller/CommandControllerTemplate.php.tmpl';
 
         $contextVariables = array();
         $contextVariables['packageKey'] = $packageKey;
@@ -179,7 +179,7 @@ class GeneratorService
         list($baseNamespace) = $this->getPrimaryNamespaceAndEntryPath($this->packageManager->getPackage($packageKey));
         $viewName = ucfirst($viewName);
 
-        $templatePathAndFilename = 'resource://TYPO3.Kickstart/Private/Generator/View/' . $templateName . 'Template.html';
+        $templatePathAndFilename = 'resource://Neos.Kickstarter/Private/Generator/View/' . $templateName . 'Template.html';
 
         $contextVariables = array();
         $contextVariables['packageKey'] = $packageKey;
@@ -228,7 +228,7 @@ class GeneratorService
     {
         $layoutName = ucfirst($layoutName);
 
-        $templatePathAndFilename = 'resource://TYPO3.Kickstart/Private/Generator/View/' . $layoutName . 'Layout.html';
+        $templatePathAndFilename = 'resource://Neos.Kickstarter/Private/Generator/View/' . $layoutName . 'Layout.html';
 
         $contextVariables = array();
         $contextVariables['packageKey'] = $packageKey;
@@ -260,7 +260,7 @@ class GeneratorService
         $namespace = trim($baseNamespace, '\\') . '\\Domain\\Model';
         $fieldDefinitions = $this->normalizeFieldDefinitions($fieldDefinitions, $namespace);
 
-        $templatePathAndFilename = 'resource://TYPO3.Kickstart/Private/Generator/Model/EntityTemplate.php.tmpl';
+        $templatePathAndFilename = 'resource://Neos.Kickstarter/Private/Generator/Model/EntityTemplate.php.tmpl';
 
         $contextVariables = array();
         $contextVariables['packageKey'] = $packageKey;
@@ -295,7 +295,7 @@ class GeneratorService
         $testName = ucfirst($modelName) . 'Test';
         $namespace = trim($baseNamespace, '\\') . '\\Tests\\Unit\\Domain\\Model';
 
-        $templatePathAndFilename = 'resource://TYPO3.Kickstart/Private/Generator/Tests/Unit/Model/EntityTestTemplate.php.tmpl';
+        $templatePathAndFilename = 'resource://Neos.Kickstarter/Private/Generator/Tests/Unit/Model/EntityTestTemplate.php.tmpl';
 
         $contextVariables = array();
         $contextVariables['packageKey'] = $packageKey;
@@ -329,7 +329,7 @@ class GeneratorService
         $repositoryClassName = $modelName . 'Repository';
         $namespace = trim($baseNamespace, '\\') . '\\Domain\\Repository';
 
-        $templatePathAndFilename = 'resource://TYPO3.Kickstart/Private/Generator/Repository/RepositoryTemplate.php.tmpl';
+        $templatePathAndFilename = 'resource://Neos.Kickstarter/Private/Generator/Repository/RepositoryTemplate.php.tmpl';
 
         $contextVariables = array();
         $contextVariables['packageKey'] = $packageKey;
@@ -360,17 +360,17 @@ class GeneratorService
         $contextVariables = array();
         $contextVariables['packageKey'] = $packageKey;
 
-        $templatePathAndFilename = 'resource://TYPO3.Kickstart/Private/Generator/Documentation/conf.py';
+        $templatePathAndFilename = 'resource://Neos.Kickstarter/Private/Generator/Documentation/conf.py';
         $fileContent = $this->renderTemplate($templatePathAndFilename, $contextVariables);
         $targetPathAndFilename = $documentationPath . '/conf.py';
         $this->generateFile($targetPathAndFilename, $fileContent);
 
-        $templatePathAndFilename = 'resource://TYPO3.Kickstart/Private/Generator/Documentation/Makefile';
+        $templatePathAndFilename = 'resource://Neos.Kickstarter/Private/Generator/Documentation/Makefile';
         $fileContent = file_get_contents($templatePathAndFilename);
         $targetPathAndFilename = $documentationPath . '/Makefile';
         $this->generateFile($targetPathAndFilename, $fileContent);
 
-        $templatePathAndFilename = 'resource://TYPO3.Kickstart/Private/Generator/Documentation/index.rst';
+        $templatePathAndFilename = 'resource://Neos.Kickstarter/Private/Generator/Documentation/index.rst';
         $fileContent = $this->renderTemplate($templatePathAndFilename, $contextVariables);
         $targetPathAndFilename = $documentationPath . '/index.rst';
         $this->generateFile($targetPathAndFilename, $fileContent);

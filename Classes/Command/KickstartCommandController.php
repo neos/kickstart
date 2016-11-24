@@ -1,8 +1,8 @@
 <?php
-namespace Neos\Kickstart\Command;
+namespace Neos\Kickstarter\Command;
 
 /*
- * This file is part of the TYPO3.Kickstart package.
+ * This file is part of the Neos.Kickstarter package.
  *
  * (c) Contributors of the Neos Project - www.neos.io
  *
@@ -14,7 +14,7 @@ namespace Neos\Kickstart\Command;
 use Neos\Utility\Arrays;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Cli\CommandController;
-use Neos\Kickstart\Utility\Validation;
+use Neos\Kickstarter\Utility\Validation;
 
 /**
  * Command controller for the Kickstart generator
@@ -30,7 +30,7 @@ class KickstartCommandController extends CommandController
 
     /**
      * @Flow\Inject
-     * @var \Neos\Kickstart\Service\GeneratorService
+     * @var \Neos\Kickstarter\Service\GeneratorService
      */
     protected $generatorService;
 
@@ -89,7 +89,7 @@ class KickstartCommandController extends CommandController
      * @param boolean $generateRelated Also create the mentioned package, related model and repository if neccessary.
      * @param boolean $force Overwrite any existing controller or template code. Regardless of this flag, the package, model and repository will never be overwritten.
      * @return string
-     * @see typo3.kickstart:kickstart:commandcontroller
+     * @see neos.kickstarter:kickstart:commandcontroller
      */
     public function actionControllerCommand($packageKey, $controllerName, $generateActions = false, $generateTemplates = true, $generateRelated = false, $force = false)
     {
@@ -173,7 +173,7 @@ class KickstartCommandController extends CommandController
      * @param string $controllerName The name for the new controller. This may also be a comma separated list of controller names.
      * @param boolean $force Overwrite any existing controller.
      * @return string
-     * @see typo3.kickstart:kickstart:actioncontroller
+     * @see neos.kickstarter:kickstart:actioncontroller
      */
     public function commandControllerCommand($packageKey, $controllerName, $force = false)
     {
@@ -201,7 +201,7 @@ class KickstartCommandController extends CommandController
      * @param string $modelName The name of the new domain model class
      * @param boolean $force Overwrite any existing model.
      * @return string
-     * @see typo3.kickstart:kickstart:repository
+     * @see neos.kickstarter:kickstart:repository
      */
     public function modelCommand($packageKey, $modelName, $force = false)
     {
@@ -244,7 +244,7 @@ class KickstartCommandController extends CommandController
      * @param string $modelName The name of the domain model class
      * @param boolean $force Overwrite any existing repository.
      * @return string
-     * @see typo3.kickstart:kickstart:model
+     * @see neos.kickstarter:kickstart:model
      */
     public function repositoryCommand($packageKey, $modelName, $force = false)
     {

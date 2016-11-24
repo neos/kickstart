@@ -1,8 +1,8 @@
 <?php
-namespace Neos\Kickstart\Tests\Unit\Utility;
+namespace Neos\Kickstarter\Tests\Unit\Utility;
 
 /*
- * This file is part of the TYPO3.Kickstart package.
+ * This file is part of the Neos.Kickstarter package.
  *
  * (c) Contributors of the Neos Project - www.neos.io
  *
@@ -24,7 +24,7 @@ class InflectorTest extends \Neos\Flow\Tests\UnitTestCase
      */
     public function humanizeCamelCaseConvertsCamelCaseToSpacesAndUppercasesFirstWord()
     {
-        $inflector = new \Neos\Kickstart\Utility\Inflector();
+        $inflector = new \Neos\Kickstarter\Utility\Inflector();
         $humanized = $inflector->humanizeCamelCase('BlogAuthor');
         $this->assertEquals('Blog author', $humanized);
     }
@@ -34,7 +34,7 @@ class InflectorTest extends \Neos\Flow\Tests\UnitTestCase
      */
     public function pluralizePluralizesWords()
     {
-        $inflector = new \Neos\Kickstart\Utility\Inflector();
+        $inflector = new \Neos\Kickstarter\Utility\Inflector();
         $this->assertEquals('boxes', $inflector->pluralize('box'));
         $this->assertEquals('foos', $inflector->pluralize('foo'));
     }

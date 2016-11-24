@@ -1,8 +1,8 @@
 <?php
-namespace Neos\Kickstart\ViewHelpers\Format;
+namespace Neos\Kickstarter\ViewHelpers\Format;
 
 /*
- * This file is part of the TYPO3.Kickstart package.
+ * This file is part of the Neos.Kickstarter package.
  *
  * (c) Contributors of the Neos Project - www.neos.io
  *

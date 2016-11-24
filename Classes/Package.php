@@ -1,8 +1,8 @@
 <?php
-namespace Neos\Kickstart;
+namespace Neos\Kickstarter;
 
 /*
- * This file is part of the TYPO3.Kickstart package.
+ * This file is part of the Neos.Kickstarter package.
  *
  * (c) Contributors of the Neos Project - www.neos.io
  *
