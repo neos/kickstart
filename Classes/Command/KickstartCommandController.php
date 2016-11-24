@@ -1,5 +1,5 @@
 <?php
-namespace TYPO3\Kickstart\Command;
+namespace Neos\Kickstart\Command;
 
 /*
  * This file is part of the TYPO3.Kickstart package.
@@ -11,9 +11,10 @@ namespace TYPO3\Kickstart\Command;
  * source code.
  */
 
+use Neos\Utility\Arrays;
 use TYPO3\Flow\Annotations as Flow;
 use TYPO3\Flow\Cli\CommandController;
-use TYPO3\Kickstart\Utility\Validation;
+use Neos\Kickstart\Utility\Validation;
 
 /**
  * Command controller for the Kickstart generator
@@ -29,7 +30,7 @@ class KickstartCommandController extends CommandController
 
     /**
      * @Flow\Inject
-     * @var \TYPO3\Kickstart\Service\GeneratorService
+     * @var \Neos\Kickstart\Service\GeneratorService
      */
     protected $generatorService;
 
@@ -108,7 +109,7 @@ class KickstartCommandController extends CommandController
         $generatedFiles = array();
         $generatedModels = false;
 
-        $controllerNames = \Neos\Utility\Arrays::trimExplode(',', $controllerName);
+        $controllerNames = Arrays::trimExplode(',', $controllerName);
         if ($generateActions === true) {
             foreach ($controllerNames as $currentControllerName) {
                 $modelClassName = str_replace('.', '\\', $packageKey) . '\Domain\Model\\' . $currentControllerName;
@@ -182,7 +183,7 @@ class KickstartCommandController extends CommandController
             exit(2);
         }
         $generatedFiles = array();
-        $controllerNames = \Neos\Utility\Arrays::trimExplode(',', $controllerName);
+        $controllerNames = Arrays::trimExplode(',', $controllerName);
         foreach ($controllerNames as $currentControllerName) {
             $generatedFiles += $this->generatorService->generateCommandController($packageKey, $currentControllerName, $force);
         }

@@ -1,5 +1,5 @@
 <?php
-namespace TYPO3\Kickstart\Tests\Unit\Service;
+namespace Neos\Kickstart\Tests\Unit\Service;
 
 /*
  * This file is part of the TYPO3.Kickstart package.
@@ -22,7 +22,7 @@ class GeneratorServiceTest extends \TYPO3\Flow\Tests\UnitTestCase
      */
     public function normalizeFieldDefinitionsConvertsBoolTypeToBoolean()
     {
-        $service = $this->getAccessibleMock(\TYPO3\Kickstart\Service\GeneratorService::class, array('dummy'));
+        $service = $this->getAccessibleMock(\Neos\Kickstart\Service\GeneratorService::class, array('dummy'));
         $fieldDefinitions = array(
             'field' => array(
                 'type' => 'bool'
@@ -37,7 +37,7 @@ class GeneratorServiceTest extends \TYPO3\Flow\Tests\UnitTestCase
      */
     public function normalizeFieldDefinitionsPrefixesGlobalClassesWithBackslash()
     {
-        $service = $this->getAccessibleMock(\TYPO3\Kickstart\Service\GeneratorService::class, array('dummy'));
+        $service = $this->getAccessibleMock(\Neos\Kickstart\Service\GeneratorService::class, array('dummy'));
         $fieldDefinitions = array(
             'field' => array(
                 'type' => 'DateTime'
@@ -53,7 +53,7 @@ class GeneratorServiceTest extends \TYPO3\Flow\Tests\UnitTestCase
     public function normalizeFieldDefinitionsPrefixesLocalTypesWithNamespaceIfNeeded()
     {
         $uniqueClassName = uniqid('Class');
-        $service = $this->getAccessibleMock(\TYPO3\Kickstart\Service\GeneratorService::class, array('dummy'));
+        $service = $this->getAccessibleMock(\Neos\Kickstart\Service\GeneratorService::class, array('dummy'));
         $fieldDefinitions = array(
             'field' => array(
                 'type' => $uniqueClassName

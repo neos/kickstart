@@ -1,5 +1,5 @@
 <?php
-namespace TYPO3\Kickstart\Utility;
+namespace Neos\Kickstart\Utility;
 
 /*
  * This file is part of the TYPO3.Kickstart package.

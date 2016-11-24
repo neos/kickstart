@@ -1,5 +1,5 @@
 <?php
-namespace TYPO3\Kickstart\Service;
+namespace Neos\Kickstart\Service;
 
 /*
  * This file is part of the TYPO3.Kickstart package.
@@ -36,7 +36,7 @@ class GeneratorService
     protected $packageManager;
 
     /**
-     * @var \TYPO3\Kickstart\Utility\Inflector
+     * @var \Neos\Kickstart\Utility\Inflector
      * @Flow\Inject
      */
     protected $inflector;

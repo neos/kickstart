@@ -1,5 +1,5 @@
 <?php
-namespace TYPO3\Kickstart\Tests\Unit\Utility;
+namespace Neos\Kickstart\Tests\Unit\Utility;
 
 /*
  * This file is part of the TYPO3.Kickstart package.
@@ -24,7 +24,7 @@ class InflectorTest extends \TYPO3\Flow\Tests\UnitTestCase
      */
     public function humanizeCamelCaseConvertsCamelCaseToSpacesAndUppercasesFirstWord()
     {
-        $inflector = new \TYPO3\Kickstart\Utility\Inflector();
+        $inflector = new \Neos\Kickstart\Utility\Inflector();
         $humanized = $inflector->humanizeCamelCase('BlogAuthor');
         $this->assertEquals('Blog author', $humanized);
     }
@@ -34,7 +34,7 @@ class InflectorTest extends \TYPO3\Flow\Tests\UnitTestCase
      */
     public function pluralizePluralizesWords()
     {
-        $inflector = new \TYPO3\Kickstart\Utility\Inflector();
+        $inflector = new \Neos\Kickstart\Utility\Inflector();
         $this->assertEquals('boxes', $inflector->pluralize('box'));
         $this->assertEquals('foos', $inflector->pluralize('foo'));
     }

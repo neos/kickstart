@@ -1,5 +1,5 @@
 <?php
-namespace TYPO3\Kickstart\ViewHelpers\Inflect;
+namespace Neos\Kickstart\ViewHelpers\Inflect;
 
 /*
  * This file is part of the TYPO3.Kickstart package.
@@ -29,7 +29,7 @@ use TYPO3\Flow\Annotations as Flow;
 class HumanizeCamelCaseViewHelper extends \Neos\FluidAdaptor\Core\ViewHelper\AbstractViewHelper
 {
     /**
-     * @var \TYPO3\Kickstart\Utility\Inflector
+     * @var \Neos\Kickstart\Utility\Inflector
      * @Flow\Inject
      */
     protected $inflector;
