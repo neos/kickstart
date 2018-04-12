@@ -1,12 +1,12 @@
-{namespace k=TYPO3\Kickstart\ViewHelpers}<?php
+{namespace k=Neos\Kickstarter\ViewHelpers}<?php
 namespace {packageNamespace}<f:if condition="{isInSubpackage}">\{subpackage}</f:if>\Controller;
 
 /*
  * This file is part of the {packageKey} package.
  */
 
-use TYPO3\Flow\Annotations as Flow;
-use TYPO3\Flow\Mvc\Controller\ActionController;
+use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Mvc\Controller\ActionController;
 use {modelFullClassName -> k:format.ltrim(charlist: '\')};
 
 class {controllerClassName} extends ActionController
@@ -83,5 +83,4 @@ class {controllerClassName} extends ActionController
         $this->addFlashMessage('Deleted a {modelName -> k:inflect.humanizeCamelCase(lowercase: true)}.');
         $this->redirect('index');
     }
-
 }

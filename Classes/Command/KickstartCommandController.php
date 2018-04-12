@@ -1,8 +1,8 @@
 <?php
-namespace TYPO3\Kickstart\Command;
+namespace Neos\Kickstarter\Command;
 
 /*
- * This file is part of the TYPO3.Kickstart package.
+ * This file is part of the Neos.Kickstarter package.
  *
  * (c) Contributors of the Neos Project - www.neos.io
  *
@@ -11,24 +11,28 @@ namespace TYPO3\Kickstart\Command;
  * source code.
  */
 
-use TYPO3\Flow\Annotations as Flow;
-use TYPO3\Kickstart\Utility\Validation;
+use Neos\Flow\Composer\ComposerUtility;
+use Neos\Flow\Package\PackageInterface;
+use Neos\Utility\Arrays;
+use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Cli\CommandController;
+use Neos\Kickstarter\Utility\Validation;
 
 /**
  * Command controller for the Kickstart generator
  *
  */
-class KickstartCommandController extends \TYPO3\Flow\Cli\CommandController
+class KickstartCommandController extends CommandController
 {
     /**
      * @Flow\Inject
-     * @var \TYPO3\Flow\Package\PackageManagerInterface
+     * @var \Neos\Flow\Package\PackageManagerInterface
      */
     protected $packageManager;
 
     /**
      * @Flow\Inject
-     * @var \TYPO3\Kickstart\Service\GeneratorService
+     * @var \Neos\Kickstarter\Service\GeneratorService
      */
     protected $generatorService;
 
@@ -41,10 +45,11 @@ class KickstartCommandController extends \TYPO3\Flow\Cli\CommandController
      * For creating a new package without sample code use the package:create command.
      *
      * @param string $packageKey The package key, for example "MyCompany.MyPackageName"
+     * @param string $packageType Optional package type, e.g. "neos-plugin"
      * @return string
-     * @see typo3.flow:package:create
+     * @see neos.flow:package:create
      */
-    public function packageCommand($packageKey)
+    public function packageCommand($packageKey, $packageType = PackageInterface::DEFAULT_COMPOSER_TYPE)
     {
         $this->validatePackageKey($packageKey);
 
@@ -52,7 +57,13 @@ class KickstartCommandController extends \TYPO3\Flow\Cli\CommandController
             $this->outputLine('Package "%s" already exists.', array($packageKey));
             exit(2);
         }
-        $this->packageManager->createPackage($packageKey);
+
+        if (!ComposerUtility::isFlowPackageType($packageType)) {
+            $this->outputLine('The package must be a Flow package, but "%s" is not a valid Flow package type.', [$packageType]);
+            $this->quit(1);
+        }
+
+        $this->packageManager->createPackage($packageKey, ['type' => $packageType]);
         $this->actionControllerCommand($packageKey, 'Standard');
         $this->documentationCommand($packageKey);
     }
@@ -87,7 +98,7 @@ class KickstartCommandController extends \TYPO3\Flow\Cli\CommandController
      * @param boolean $generateRelated Also create the mentioned package, related model and repository if neccessary.
      * @param boolean $force Overwrite any existing controller or template code. Regardless of this flag, the package, model and repository will never be overwritten.
      * @return string
-     * @see typo3.kickstart:kickstart:commandcontroller
+     * @see neos.kickstarter:kickstart:commandcontroller
      */
     public function actionControllerCommand($packageKey, $controllerName, $generateActions = false, $generateTemplates = true, $generateRelated = false, $force = false)
     {
@@ -107,7 +118,7 @@ class KickstartCommandController extends \TYPO3\Flow\Cli\CommandController
         $generatedFiles = array();
         $generatedModels = false;
 
-        $controllerNames = \TYPO3\Flow\Utility\Arrays::trimExplode(',', $controllerName);
+        $controllerNames = Arrays::trimExplode(',', $controllerName);
         if ($generateActions === true) {
             foreach ($controllerNames as $currentControllerName) {
                 $modelClassName = str_replace('.', '\\', $packageKey) . '\Domain\Model\\' . $currentControllerName;
@@ -171,7 +182,7 @@ class KickstartCommandController extends \TYPO3\Flow\Cli\CommandController
      * @param string $controllerName The name for the new controller. This may also be a comma separated list of controller names.
      * @param boolean $force Overwrite any existing controller.
      * @return string
-     * @see typo3.kickstart:kickstart:actioncontroller
+     * @see neos.kickstarter:kickstart:actioncontroller
      */
     public function commandControllerCommand($packageKey, $controllerName, $force = false)
     {
@@ -181,7 +192,7 @@ class KickstartCommandController extends \TYPO3\Flow\Cli\CommandController
             exit(2);
         }
         $generatedFiles = array();
-        $controllerNames = \TYPO3\Flow\Utility\Arrays::trimExplode(',', $controllerName);
+        $controllerNames = Arrays::trimExplode(',', $controllerName);
         foreach ($controllerNames as $currentControllerName) {
             $generatedFiles += $this->generatorService->generateCommandController($packageKey, $currentControllerName, $force);
         }
@@ -199,7 +210,7 @@ class KickstartCommandController extends \TYPO3\Flow\Cli\CommandController
      * @param string $modelName The name of the new domain model class
      * @param boolean $force Overwrite any existing model.
      * @return string
-     * @see typo3.kickstart:kickstart:repository
+     * @see neos.kickstarter:kickstart:repository
      */
     public function modelCommand($packageKey, $modelName, $force = false)
     {
@@ -242,7 +253,7 @@ class KickstartCommandController extends \TYPO3\Flow\Cli\CommandController
      * @param string $modelName The name of the domain model class
      * @param boolean $force Overwrite any existing repository.
      * @return string
-     * @see typo3.kickstart:kickstart:model
+     * @see neos.kickstarter:kickstart:model
      */
     public function repositoryCommand($packageKey, $modelName, $force = false)
     {
@@ -275,6 +286,29 @@ class KickstartCommandController extends \TYPO3\Flow\Cli\CommandController
         $generatedFiles = $this->generatorService->generateDocumentation($packageKey);
 
         $this->outputLine(implode(PHP_EOL, $generatedFiles));
+    }
+
+    /**
+     * Kickstart translation
+     *
+     * Generates the translation files for the given package.
+     *
+     * @param string $packageKey The package key of the package for the translation
+     * @param string $sourceLanguageKey The language key of the default language
+     * @param array $targetLanguageKeys Comma separated language keys for the target translations
+     * @return void
+     */
+    public function translationCommand($packageKey, $sourceLanguageKey, array $targetLanguageKeys = [])
+    {
+        $this->validatePackageKey($packageKey);
+        if (!$this->packageManager->isPackageAvailable($packageKey)) {
+            $this->outputLine('Package "%s" is not available.', [$packageKey]);
+            exit(2);
+        }
+
+        $generateFiles = $this->generatorService->generateTranslation($packageKey, $sourceLanguageKey, $targetLanguageKeys);
+
+        $this->outputLine(implode(PHP_EOL, $generateFiles));
     }
 
     /**

@@ -1,9 +1,9 @@
 ----------------
-Flow Kickstarter
+Neos Kickstarter
 ----------------
 
 .. note:: This repository is a **read-only subsplit** of a package that is part of the
-          Flow framework (learn more on `flow.typo3.org <http://flow.typo3.org/>`_).
+          Flow framework (learn more on `https://flow.neos.io/ <https://flow.neos.io/>`_).
 
 The Kickstarter is a simple generator for Flow packages, controllers, views and more.
 

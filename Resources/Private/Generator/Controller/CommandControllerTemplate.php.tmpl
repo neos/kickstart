@@ -5,8 +5,8 @@ namespace {packageNamespace}\Command;
  * This file is part of the {packageKey} package.
  */
 
-use TYPO3\Flow\Annotations as Flow;
-use TYPO3\Flow\Cli\CommandController;
+use Neos\Flow\Annotations as Flow;
+use Neos\Flow\Cli\CommandController;
 
 /**
  * @Flow\Scope("singleton")
@@ -32,5 +32,4 @@ class {controllerClassName} extends CommandController
     {
         $this->outputLine('You called the example command and passed "%s" as the first argument.', array($requiredArgument));
     }
-
 }

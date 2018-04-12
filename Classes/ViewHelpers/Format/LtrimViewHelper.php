@@ -1,8 +1,8 @@
 <?php
-namespace TYPO3\Kickstart\ViewHelpers\Format;
+namespace Neos\Kickstarter\ViewHelpers\Format;
 
 /*
- * This file is part of the TYPO3.Kickstart package.
+ * This file is part of the Neos.Kickstarter package.
  *
  * (c) Contributors of the Neos Project - www.neos.io
  *
@@ -14,29 +14,28 @@ namespace TYPO3\Kickstart\ViewHelpers\Format;
 use Neos\FluidAdaptor\Core\ViewHelper\AbstractViewHelper;
 
 /**
- * Wrapper for PHPs ucfirst function.
- * @see http://www.php.net/manual/en/ucfirst
+ * Wrapper for PHPs ltrim function.
+ * @see http://www.php.net/manual/en/ltrim
  *
  * = Examples =
  *
  * <code title="Example">
- * {textWithMixedCase -> k:ucfirst()}
+ * {someVariable -> k:format.ltrim()}
  * </code>
  *
  * Output:
- * TextWithMixedCase
+ * content of {someVariable} with ltrim applied
  *
  */
-class UcfirstViewHelper extends AbstractViewHelper
+class LtrimViewHelper extends AbstractViewHelper
 {
     /**
-     * Uppercase first character
-     *
+     * @param string $charlist
      * @return string The altered string.
      */
-    public function render()
+    public function render($charlist = null)
     {
         $content = $this->renderChildren();
-        return ucfirst($content);
+        return ltrim($content, $charlist);
     }
 }
