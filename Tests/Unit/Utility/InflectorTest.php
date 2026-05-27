@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace Neos\Kickstarter\Tests\Unit\Utility;
 
 /*
@@ -17,7 +20,7 @@ require_once(__DIR__ . '/../../../Resources/Private/PHP/Sho_Inflect.php');
  * Testcase for the Inflector
  *
  */
-class InflectorTest extends \Neos\Flow\Tests\UnitTestCase
+final class InflectorTest extends \Neos\Flow\Tests\UnitTestCase
 {
     /**
      * @test

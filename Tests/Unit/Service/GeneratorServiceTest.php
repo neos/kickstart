@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 namespace Neos\Kickstarter\Tests\Unit\Service;
 
 /*
@@ -15,7 +18,7 @@ namespace Neos\Kickstarter\Tests\Unit\Service;
  * Testcase for the generator service
  *
  */
-class GeneratorServiceTest extends \Neos\Flow\Tests\UnitTestCase
+final class GeneratorServiceTest extends \Neos\Flow\Tests\UnitTestCase
 {
     /**
      * @test
